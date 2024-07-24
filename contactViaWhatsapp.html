@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Contactez le Service Client via WhatsApp</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+            .contact {
+                background-image: url(./images/img-form.jpg);
+                background-size: cover;
+                box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.8);
+                width: 100%;
+                background-position: unset;
+            }
+            .contactform {
+                position: relative;
+                padding: 75px 50px;
+                background: #fff;
+                box-shadow: 5px 15px 50px rgba(0, 0, 0, 0.8);
+                max-width: 500px;
+                margin-top: 50px;
+                justify-content: center;
+                align-items: center;
+                margin-left: 38%;
+            }
+            .contactform .grandTitre{
+                position: relative;
+                align-items: center;
+            }
+            img{
+                display: flex;
+                padding: -30px;
+                margin-top: -50px;
+                justify-content: center;
+            }
+            .contactform .inputboite {
+                position: relative;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+            .contactform h2 {
+                color: #111;
+                font-size: 1.5em;
+                margin-bottom: 20px;
+            }
+            .contactform .inputboite input,
+            .contactform .inputboite textarea {
+                width: 100%;
+                border: 1px solid #555;
+                padding: 10px;
+                color: #111;
+                outline: none;
+                font-size: 16px;
+                font-weight: 300;
+                resize: none;
+            }
+            .contactform .inputboite input[type="submit"] {
+                font-size: 1em;
+                font-weight: 700;
+                color: #fff;
+                background: #25D366;
+                display: inline-block;
+                cursor: pointer;
+                text-transform: uppercase;
+                text-decoration: none;
+                letter-spacing: 2px;
+                outline: none;
+                border: none;
+                transition: 0.5s;
+                max-width: 120px;
+                align-items: center;
+                justify-content: center;
+            }
+            
+
+        </style>
+    </head>
+<body>
+    <div class="contactform">
+        <div class="grandTitre">
+            <img src="./images/logo-whatsapp.png" width="100px" alt="logo-whatsapp">
+            <h2>Contactez le Service Client via WhatsApp</h2>
+        </div>
+        <form action="https://api.whatsapp.com/send" method="GET">
+            <input type="hidden" name="phone" value="+243991984690">
+            <input type="hidden" name="text" value="">
+            <div class="inputboite">
+                <input type="text" name="name" placeholder="Nom complet" required>
+            </div>
+            <div class="inputboite">
+                <input type="text" name="city" placeholder="Ville" required>
+            </div>
+            <div class="inputboite">
+                <textarea name="message" placeholder="Votre message" rows="4" required></textarea>
+            </div>
+            <div class="inputboite" id="btn-send">
+                <input type="submit" value="Envoyer">
+                
+            </div>
+        </form>
+    </div>
+    <script>
+        // Remplir automatiquement le message WhatsApp
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const name = document.querySelector("[name='name']").value;
+            const city = document.querySelector("[name='city']").value;
+            const message = document.querySelector("[name='message']").value;
+            const formattedMessage = `Bonjour, je m'appelle ${name}, je réside dans la ville de ${city} et mon message est : ${message}`;
+            document.querySelector("[name='text']").value = encodeURIComponent(formattedMessage);
+            this.submit();
+        });
+    </script>
+</body>
+</html>

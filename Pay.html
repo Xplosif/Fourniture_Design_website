@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire de Paiement</title>
+    <link rel="stylesheet" href="stylePayProssess.css">
+</head>
+<header>
+    <a href="#" class="logo"><span>R</span>esto</a>
+    <div class="menuToggle" ></div>
+    <ul class="navbar">
+        <li><a href="index.html#" >Accueil</a></li>
+        <li><a href="index.html#apropos" >A propos</a></li>
+        <li><a href="index.html#menu" >Menu</a></li>
+        <li><a href="index.html#expert" >Expert</a></li>
+        <li><a href="index.html#temoignage" >Temoignage</a></li>
+        <li><a href="index.htmlcontact" >Contact</a></li>
+        <a href="connexion.html" class="btn-connexion">Connexion</a>
+    </ul>   
+</header>
+<body>
+    <div class="container">
+        <h2>Choisissez un Mode de Paiement</h2>
+        <form id="payment-form-mastercard">
+            <label for="name">Nom sur la carte:</label>
+            <input type="text" id="name" placeholder="Exaucé Samuel" required>
+
+            <label for="card-number">Numéro de carte:</label>
+            <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+
+            <label for="expiry">Date d'expiration:</label>
+            <input type="text" id="expiry" placeholder="MM/YY" required>
+
+            <label for="cvv">Code de sécurité (CVV):</label>
+            <input type="text" id="cvv" placeholder="123" required>
+
+            <label for="villes">Villes:</label>
+            <select id="villes" required>
+                <option value="">Sélectionnez la ville</option>
+                <option value="Bni">Beni</option>
+                <option value="Bbo">Butembo</option>
+                <option value="2go">Goma</option>
+                <option value="Bna">Bunia</option>
+                <option value="Kin">Kinshasa</option>
+            </select>
+
+            <input type="submit" value="Payer (MasterCard)">
+        </form>
+
+        <form id="payment-form-paypal">
+            <label for="paypal-email">Adresse email PayPal:</label>
+            <input type="email" id="paypal-email" required>
+
+            <input type="submit" value="Payer (PayPal)">
+        </form>
+
+        <form id="payment-form-airtelmoney">
+            <label for="phone">Numéro de téléphone Airtel Money:</label>
+            <input type="text" id="phone" required>
+
+            <label for="pin">PIN Airtel Money:</label>
+            <input type="password" id="pin" required>
+
+            <input type="submit" value="Payer (Airtel Money)">
+        </form>
+
+        <form id="payment-form-mpesa">
+            <label for="phone">Numéro de téléphone M-Pesa:</label>
+            <input type="text" id="phone" required>
+
+            <label for="pin">PIN M-Pesa:</label>
+            <input type="password" id="pin" required>
+
+            <input type="submit" value="Payer (M-Pesa)">
+        </form>
+
+        <form id="payment-form-orangemoney">
+            <label for="phone">Numéro de téléphone Orange Money:</label>
+            <input type="text" id="phone" required>
+
+            <label for="pin">PIN Orange Money:</label>
+            <input type="password" id="pin" required>
+
+            <input type="submit" value="Payer (Orange Money)">
+        </form>
+
+        <div id="payment-method-selection">
+            <input type="radio" name="payment-method" value="mastercard" id="mastercard"> <label for="mastercard">
+                <div class="imbox"><img src="/images/visa.png" alt="mastercard" style="max-width: 50px;"></div></label>
+            <input type="radio" name="payment-method" value="paypal" id="paypal"> <label for="paypal">
+                <div class="imbox"><img src="/images/airtel-mobile-money-2-768x480.png" alt="paypal" style="max-width: 50px;"></div></label>
+            <input type="radio" name="payment-method" value="airtelmoney" id="airtelmoney"> <label for="airtelmoney">
+                <div class="imbox"><img src="/images/airtel-mobile-money-2-768x480.png" alt="Airtel Money" style="max-width: 50px;"></div></label>
+            <input type="radio" name="payment-method" value="mpesa" id="mpesa"> <label for="mpesa">
+                <div class="imbox"><img src="/images/M-pesa-logo.png" alt="M-Pesa" style="max-width: 50px;"></div>
+            </label>
+            <input type="radio" name="payment-method" value="orangemoney" id="orangemoney"> 
+            <label for="orangemoney"><div class="imbox"><img src="/images/Orange_Money_logo_PNG1.png" alt="Orange Money" style="max-width: 50px;"></div></label>
+        </div>
+    </div>
+
+    <script>
+        const paymentMethodSelection = document.getElementById('payment-method-selection');
+        const paymentForms = document.querySelectorAll('form');
+
+        // Afficher le formulaire approprié lorsqu'un mode de paiement est sélectionné
+        paymentMethodSelection.addEventListener('change', function() {
+            const selectedMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+            paymentForms.forEach(form => {
+                form.style.display = 'none';
+            });
+
+            const selectedForm = document.getElementById(`payment-form-${selectedMethod}`);
+            if (selectedForm) {
+                selectedForm.style.display = 'block';
+            }
+        });
+        window.addEventListener('scroll', function(){
+         const header =document.querySelector('header');
+         header.classList.toggle("sticky", window.scrollY > 0 );
+        });
+
+        function toggleMenu(){
+            const tmenuToggle = document.querySelector('.menuToggle');
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        }
+
+        // Gérer la soumission du formulaire ici
+        // Gérer la soumission du formulaire ici
+    paymentForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêcher la soumission du formulaire par défaut
+
+            const selectedMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+            if (selectedMethod === 'mastercard') {
+                // Gérer la soumission pour MasterCard
+                const cardName = document.getElementById('name').value;
+                const cardNumber = document.getElementById('card-number').value;
+                const expiry = document.getElementById('expiry').value;
+                const cvv = document.getElementById('cvv').value;
+                const villes = document.getElementById('villes').value;
+                // Effectuer le traitement approprié pour MasterCard ici
+            } else if (selectedMethod === 'paypal') {
+                // Gérer la soumission pour PayPal
+                const paypalEmail = document.getElementById('paypal-email').value;
+                // Effectuer le traitement approprié pour PayPal ici
+            } else if (selectedMethod === 'airtelmoney' || selectedMethod === 'mpesa' || selectedMethod === 'orangemoney') {
+                // Gérer la soumission pour les paiements mobiles (Airtel Money, M-Pesa, Orange Money)
+                const phone = document.getElementById('phone').value;
+                const pin = document.getElementById('pin').value;
+            }
+        });
+    });
+
+    </script>
+</body>
+</html>
+

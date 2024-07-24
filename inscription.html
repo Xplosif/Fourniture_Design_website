@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire d'Inscription avec Préférences Alimentaires</title>
+    <link rel="stylesheet" href="styleInscription.css">
+    
+</head>
+<body>
+    <div class="container">
+        <h2>Inscription</h2>
+        <form action="traitement_inscription.php" method="post">
+            <label for="nom">Nom complet :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="email">Adresse e-mail :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mot_de_passe">Mot de passe :</label>
+            <input type="password" id="mot_de_passe" name="mot_de_passe" required>
+
+            <label for="confirmer_mot_de_passe">Confirmer le mot de passe :</label>
+            <input type="password" id="confirmer_mot_de_passe" name="confirmer_mot_de_passe" required>
+
+            <label>Sexe :</label>
+            <label for="homme">Homme</label>
+            <input type="radio" id="homme" name="sexe" value="homme">
+            <label for="femme">Femme</label>
+            <input type="radio" id="femme" name="sexe" value="femme">
+            <label for="autre">Autre</label>
+            <input type="radio" id="autre" name="sexe" value="autre">
+
+            <label for="date_de_naissance">Date de naissance :</label>
+            <input type="date" id="date_de_naissance" name="date_de_naissance" required>
+
+            <label>Préférences alimentaires :</label>
+
+            <input type="checkbox" id="vegan" name="preferences[]" value="vegan">
+            <label for="vegan">Vegan</label>
+
+            <input type="checkbox" id="sans_gluten" name="preferences[]" value="sans_gluten">
+            <label for="sans_gluten">Sans gluten</label>
+
+            <input type="checkbox" id="cetogene" name="preferences[]" value="cetogene">
+            <label for="cetogene">Cétogène</label>
+
+            <label>Viandes que vous ne mangez pas :</label>
+            <input type="checkbox" id="porc" name="viandes[]" value="porc">
+            <label for="porc">Porc</label>
+
+            <input type="checkbox" id="boeuf" name="viandes[]" value="boeuf">
+            <label for="boeuf">Boeuf</label>
+
+            <input type="checkbox" id="poulet" name="viandes[]" value="poulet">
+            <label for="poulet">Poulet</label>
+
+            <input type="checkbox" id="agneau" name="viandes[]" value="agneau">
+            <label for="agneau">Agneau</label>
+
+            <input type="checkbox" id="poisson" name="autres_preferences[]" value="poisson">
+            <label for="poisson">Du poisson</label>
+
+            <input type="checkbox" id="sel" name="autres_preferences[]" value="sel">
+            <label for="sel">Du sel</label>
+
+            <input type="checkbox" id="poisson" name="autres_preferences[]" value="poisson">
+            <label for="poisson">Du sucre</label>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+    </div>
+</body>
+</html>
